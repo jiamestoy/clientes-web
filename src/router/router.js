@@ -8,6 +8,7 @@ import Register from '../pages/Register.vue';
 import MyProfile from '../pages/MyProfile.vue';
 import UserProfile from '../pages/UserProfile.vue';
 import PrivateChat from '../pages/PrivateChat.vue';
+import UsersList from '../pages/UsersList.vue'
 
 const routes = [
     {
@@ -44,7 +45,7 @@ const routes = [
     },
     {
         path: '/lista-usuarios',
-        component: PrivateChat,
+        component: UsersList,
         meta: { requiresAuth: true, requiresAdmin: true },
     },
 ];

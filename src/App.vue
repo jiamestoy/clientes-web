@@ -35,7 +35,7 @@ function useLogout() {
                     <li>
                         <router-link class="block p-2" to="usuario/6FBNgT4E4xcALKR4Smb1bT6fUIv2/chat">Chat con Administrador</router-link>
                     </li>
-                    <template v-if="isAdmin === 'true'">
+                    <template v-if="isAdmin(user.id)">
                         <li>
                             <router-link class="block p-2" to="lista-usuarios">Lista de Usuario</router-link>
                         </li>
