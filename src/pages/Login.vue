@@ -37,7 +37,7 @@ function useLogininForm() {
                 }
                 loading.value = false;
                 console.log('[Login.vue] El usuario es: ', user);
-                router.push('/chat');
+                router.push('/');
             })
             .catch(err => {
                 loading.value = false;
