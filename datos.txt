@@ -1,0 +1,15 @@
+Carrera: Diseño y Desarrollo Web
+
+Materia: Clientes Web Mobile
+
+Año: 2023
+
+Turno: Tarde
+
+Comisión: DWT4AV
+
+Alumnos: Juan Ignacio Amestoy
+
+Profesor: Santiago Gallino
+
+1er Parcial
