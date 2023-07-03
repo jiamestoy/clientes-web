@@ -12,7 +12,6 @@ export async function getUserById(id) {
     const userRef = doc(db, 'users', id);
     const user = await getDoc(userRef);
     
-
     if(!user.exists()) {
         return null;
     }
@@ -23,3 +22,15 @@ export async function getUserById(id) {
     };
 
 }
+
+export async function isAdmin(id) {
+    const userRef = doc(db, 'users', id);
+    const userSnapshot = await getDoc(userRef);
+    const userData = userSnapshot.data();
+  
+    if (userData.role === 'admin') {
+      return true;
+    }
+  
+    return false;
+  }

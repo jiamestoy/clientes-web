@@ -3,6 +3,7 @@
 import { useRouter } from 'vue-router';
 import { logout } from './services/auth.js';
 import useAuth from './composition/useAuth.js';
+import { isAdmin } from './services/users.js'
 
 const {user} = useAuth();
 const {handleLogout} = useLogout();
@@ -32,8 +33,13 @@ function useLogout() {
 
                 <template v-if="user.id !== null">
                     <li>
-                        <router-link class="block p-2" to="usuario/6FBNgT4E4xcALKR4Smb1bT6fUIv2">Chat con Administrador</router-link>
+                        <router-link class="block p-2" to="usuario/6FBNgT4E4xcALKR4Smb1bT6fUIv2/chat">Chat con Administrador</router-link>
                     </li>
+                    <template v-if="isAdmin === 'true'">
+                        <li>
+                            <router-link class="block p-2" to="lista-usuarios">Lista de Usuario</router-link>
+                        </li>
+                    </template>
                     <li>
                         <router-link class="block p-2" to="/perfil">Perfil</router-link>
                     </li>

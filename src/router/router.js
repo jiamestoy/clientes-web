@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { subscribeToAuth } from '../services/auth.js';
+import { isAdmin } from '../services/users.js'
 import Home from '../pages/Home.vue';
 import Chat from '../pages/Chat.vue';
 import Login from '../pages/Login.vue';
@@ -41,6 +42,11 @@ const routes = [
         component: PrivateChat,
         meta: { requiresAuth: true },
     },
+    {
+        path: '/lista-usuarios',
+        component: PrivateChat,
+        meta: { requiresAuth: true, requiresAdmin: true },
+    },
 ];
 
 const router = createRouter({
@@ -55,12 +61,21 @@ let user = {
 
 subscribeToAuth(newUser => user = newUser);
 
-router.beforeEach((to, from) => {
-    if(to.meta.requiresAuth && user.id === null) {
-        return {
-            path: '/iniciar-sesion',
-        }
+router.beforeEach(async (to, from, next) => {
+    if (to.meta.requiresAuth && user.id === null) {
+      next('/iniciar-sesion');
+    } else if (to.meta.requiresAdmin) {
+      // Check the user's role
+      const userRole = await isAdmin(user.id);
+  
+      if (userRole) {
+        next();
+      } else {
+        next('/');
+      }
+    } else {
+      next();
     }
-})
+  });
 
 export default router;
