@@ -21,7 +21,7 @@ function useProductsList() {
     <section class="container">
         <h1 class="text-3xl mb-3">Productos</h1>
 
-        <router-link class="block p-2 my-3 bg-green-700 text-white rounded text-center" to="/admin">Añadir Nuevo Producto</router-link>
+        <router-link class="block p-2 my-3 bg-green-700 text-white rounded text-center" to="/admin/products/new">Añadir Nuevo Producto</router-link>
 
         <div class="flex gap-4">
             <div v-for="product in products" class="my-2 p-2 border rounded">
@@ -29,8 +29,10 @@ function useProductsList() {
 
                 <p>{{ product.description }}</p>
 
-                <router-link :to="`/admin/editar/${product.id}`" class="block p-2 my-2 bg-blue-500 text-white rounded text-center">Editar</router-link>
-                <router-link :to="`/admin/eliminar/${product.id}`" class="block p-2 my-2 bg-red-500 text-white rounded text-center">Eliminar</router-link>
+                <p>Precio: ${{ product.price }}/mes</p>
+
+                <router-link :to="`/admin/products/edit/${product.id}`" class="block p-2 my-2 bg-blue-500 text-white rounded text-center">Editar</router-link>
+                <router-link :to="`/admin/products/delete/${product.id}`" class="block p-2 my-2 bg-red-500 text-white rounded text-center">Eliminar</router-link>
             </div>
         </div>
     </section>

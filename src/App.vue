@@ -57,7 +57,7 @@ onUpdated(() => {
                     </template>
                     <template v-if="userIsAdmin == false">
                         <li>
-                            <router-link class="block p-2" to="/usuario/rPkbcbFrpJTsdicp1V3ok4cq20e2/chat">Chat con Administrador</router-link>
+                            <router-link class="block p-2" to="/usuario/rPkbcbFrpJTsdicp1V3ok4cq20e2/chat">Contactar</router-link>
                         </li>
                         <li>
                             <router-link class="block p-2" to="/perfil">Mi Perfil</router-link>

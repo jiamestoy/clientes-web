@@ -13,6 +13,9 @@ import MessagesList from '../pages/Admin/MessagesList.vue';
 import AdminDashboard from '../pages/Admin/Dashboard.vue';
 import Products from '../pages/Products.vue';
 import AdminProducts from '../pages/Admin/Products.vue';
+import EditProduct from '../pages/Admin/EditProduct.vue';
+import DeleteProduct from '../pages/Admin/DeleteProduct.vue';
+import NewProduct from '../pages/Admin/NewProduct.vue';
 
 const routes = [
     {
@@ -69,6 +72,21 @@ const routes = [
     {
       path: '/admin/products',
       component: AdminProducts,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/admin/products/edit/:id',
+      component: EditProduct,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/admin/products/delete/:id',
+      component: DeleteProduct,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/admin/products/new',
+      component: NewProduct,
       meta: { requiresAuth: true, requiresAdmin: true },
     },
 ];

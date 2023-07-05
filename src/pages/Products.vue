@@ -29,6 +29,8 @@ function useProductsList() {
 
                 <p>{{ product.description }}</p>
 
+                <p>Precio: ${{ product.price }}/mes</p>
+
                 <router-link :to="`/`" class="block p-2 my-2 bg-green-500 text-white rounded text-center">Contratar</router-link>
             </div>
         </div>
