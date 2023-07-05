@@ -1,8 +1,10 @@
 <script setup>
 import { subscribeToProducts } from "../services/products";
 import {ref} from "vue";
+import useAuth from "../composition/useAuth";
 
 const {products} = useProductsList();
+const {user} = useAuth();
 
 function useProductsList() {
     const products = ref([]);
@@ -31,7 +33,7 @@ function useProductsList() {
 
                 <p>Precio: ${{ product.price }}/mes</p>
 
-                <router-link :to="`/`" class="block p-2 my-2 bg-green-500 text-white rounded text-center">Contratar</router-link>
+                <router-link :to="`/products/order/${product.id}/${user.id}`" class="block p-2 my-2 bg-green-500 text-white rounded text-center">Contratar</router-link>
             </div>
         </div>
     </section>

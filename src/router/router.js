@@ -16,6 +16,8 @@ import AdminProducts from '../pages/Admin/Products.vue';
 import EditProduct from '../pages/Admin/EditProduct.vue';
 import DeleteProduct from '../pages/Admin/DeleteProduct.vue';
 import NewProduct from '../pages/Admin/NewProduct.vue';
+import UserDetail from '../pages/Admin/UserDetail.vue';
+import OrderProduct from '../pages/OrderProduct.vue';
 
 const routes = [
     {
@@ -60,9 +62,9 @@ const routes = [
       meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
-      path: '/lista-usuarios',
-      component: UsersList,
-      meta: { requiresAuth: true, requiresAdmin: true },
+        path: '/lista-usuarios',
+        component: UsersList,
+        meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
       path: '/admin/lista-mensajes',
@@ -88,6 +90,16 @@ const routes = [
       path: '/admin/products/new',
       component: NewProduct,
       meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/admin/user/:id',
+      component: UserDetail,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/products/order/:id/:userId',
+      component: OrderProduct,
+      meta: { requiresAuth: true },
     },
 ];
 
