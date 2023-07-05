@@ -93,6 +93,7 @@ onUpdated(() => {
                 <li><b>Clientes Web Mobile</b></li>
                 <li><b>Comisión DWT4AV</b></li>
                 <li><b>Juan Ignacio Amestoy</b></li>
+                <li><b>Iñaki Iriarte</b></li>
             </ul>
         </footer>
     </div>

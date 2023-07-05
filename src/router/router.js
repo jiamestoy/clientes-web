@@ -60,9 +60,9 @@ const routes = [
       meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
-        path: '/lista-usuarios',
-        component: UsersList,
-        meta: { requiresAuth: true, requiresAdmin: true },
+      path: '/lista-usuarios',
+      component: UsersList,
+      meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
       path: '/lista-mensajes',

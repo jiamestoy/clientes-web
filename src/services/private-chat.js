@@ -70,3 +70,18 @@ async function getPrivateChatRef(from, to) {
     return querySnap.docs[0];
 
 }
+
+export async function getChatsByUser(userId) {
+    const privateChatRef = collection(db, 'private-chats');
+
+    const userQuery = query(
+        privateChatRef,
+        where(`users.${userId}`, '==', true)
+    );
+
+    const querySnap = await getDocs(userQuery);
+
+    const chats = querySnap.docs.map(doc => doc.data());
+
+    return chats;
+}
