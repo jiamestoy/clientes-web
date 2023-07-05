@@ -4,9 +4,11 @@ import { useRouter } from 'vue-router';
 import { logout } from './services/auth.js';
 import useAuth from './composition/useAuth.js';
 import { isAdmin } from './services/users.js'
+import { onUpdated, ref } from 'vue';
 
 const {user} = useAuth();
 const {handleLogout} = useLogout();
+const userIsAdmin = ref(false);
 
 function useLogout() {
     const router = useRouter();
@@ -14,12 +16,25 @@ function useLogout() {
         handleLogout() {
             logout()
                 .then( () => {
+                    userIsAdmin.value = false;
                     router.push('/iniciar-sesion')
                 });
         }
     }
 }
 
+onUpdated(() => {
+    if (user.value.id){ 
+        isAdmin(user.value.id)
+        .then((userRole) => {
+            if (userRole == true) {
+                userIsAdmin.value = true;
+            } else {
+                userIsAdmin.value = false;
+            }
+        });
+    }
+})
 </script>
 
 <template>
@@ -30,19 +45,24 @@ function useLogout() {
                 <li>
                     <router-link class="block p-2" to="/">Home</router-link>
                 </li>
+                <li>
+                    <router-link class="block p-2" to="/products">Servicios</router-link>
+                </li>
 
-                <template v-if="user.id !== null">
-                    <li>
-                        <router-link class="block p-2" to="usuario/6FBNgT4E4xcALKR4Smb1bT6fUIv2/chat">Chat con Administrador</router-link>
-                    </li>
-                    <template v-if="isAdmin(user.id)">
+                <template v-if="user.id !== null" :key="userIsAdmin">
+                    <template v-if="userIsAdmin == true">
                         <li>
-                            <router-link class="block p-2" to="lista-usuarios">Lista de Usuario</router-link>
+                            <router-link class="block p-2" to="/admin">Panel de Administración</router-link>
                         </li>
                     </template>
-                    <li>
-                        <router-link class="block p-2" to="/perfil">Perfil</router-link>
-                    </li>
+                    <template v-if="userIsAdmin == false">
+                        <li>
+                            <router-link class="block p-2" to="/usuario/rPkbcbFrpJTsdicp1V3ok4cq20e2/chat">Chat con Administrador</router-link>
+                        </li>
+                        <li>
+                            <router-link class="block p-2" to="/perfil">Mi Perfil</router-link>
+                        </li>
+                    </template>
                     <li>
                         <form
                             action="#"

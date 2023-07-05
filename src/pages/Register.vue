@@ -25,7 +25,7 @@ function useRegisterForm() {
         loading.value = true;
         register({email: fields.value.email, password: fields.value.password})
             .then(() => {
-                router.push('/chat');
+                router.push('/');
             })
             .catch(err => {
                 console.error('[Register handleSubmit] Error: ', err);
