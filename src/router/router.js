@@ -17,6 +17,7 @@ import EditProduct from '../pages/Admin/EditProduct.vue';
 import DeleteProduct from '../pages/Admin/DeleteProduct.vue';
 import NewProduct from '../pages/Admin/NewProduct.vue';
 import UserDetail from '../pages/Admin/UserDetail.vue';
+import OrderProduct from '../pages/OrderProduct.vue';
 
 const routes = [
     {
@@ -94,6 +95,11 @@ const routes = [
       path: '/admin/user/:id',
       component: UserDetail,
       meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
+      path: '/products/order/:id/:userId',
+      component: OrderProduct,
+      meta: { requiresAuth: true },
     },
 ];
 

@@ -1,10 +1,9 @@
 <script setup>
 import { useRoute } from 'vue-router';
 import { getAllUsers } from '../../services/users.js';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 const route = useRoute();
-// const users = getAllUsers();
 const users = ref();
 
 async function getUsers() {
