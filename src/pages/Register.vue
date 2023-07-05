@@ -2,6 +2,7 @@
 import Button from '../components/Button.vue';
 import Label from '../components/Label.vue';
 import Input from '../components/Input.vue';
+import Loader from '../components/Loader.vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { register } from '../services/auth.js';
@@ -25,10 +26,20 @@ function useRegisterForm() {
         loading.value = true;
         register({email: fields.value.email, password: fields.value.password})
             .then(() => {
-                router.push('/');
+                feedback.value = {
+                    message: 'Cuenta creada con éxito. ¡Bienvenido!',
+                    type: 'success',
+                }
+                loading.value = false;
+                setTimeout(() => router.push('/'), 2000);
             })
             .catch(err => {
                 console.error('[Register handleSubmit] Error: ', err);
+                loading.value = false;
+                feedback.value = {
+                    message: err.message,
+                    type: 'error',
+                }
             });
     }
 
@@ -69,5 +80,14 @@ function useRegisterForm() {
             </div>
             <Button>Registrarse</Button>
         </form>
+
+        <Loader v-if="loading" />
+
+        <div v-if="feedback.message !== '' && feedback.type == 'error'" class="bg-red-200 text-red-900 p-3 rounded">
+                {{ feedback.message }}
+        </div>
+        <div v-if="feedback.message !== '' && feedback.type == 'success'" class="bg-green-200 text-green-900 p-3 rounded">
+            {{ feedback.message }}
+        </div>
     </section>
 </template>
