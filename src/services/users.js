@@ -79,15 +79,7 @@ export async function createOrder(id, idProduct){
         return null;
     } else {
         productName = product.data().name;
-        // console.log(product.data().name)
     }
-
-    // return {
-    //     id: user.id,
-    //     email: user.data().email,
-    // };
-
-    // const productName = product.data().name;
 
     await addDoc(collection(db, 'users', id, 'orders'), {
         service_id: idProduct,

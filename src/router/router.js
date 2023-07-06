@@ -67,6 +67,11 @@ const routes = [
       meta: { requiresAuth: true, requiresAdmin: true },
     },
     {
+      path: '/admin/lista-usuarios',
+      component: UsersList,
+      meta: { requiresAuth: true, requiresAdmin: true },
+    },
+    {
       path: '/admin/products',
       component: AdminProducts,
       meta: { requiresAuth: true, requiresAdmin: true },
