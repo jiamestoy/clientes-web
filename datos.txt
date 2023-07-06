@@ -8,8 +8,8 @@ Turno: Tarde
 
 Comisión: DWT4AV
 
-Alumnos: Juan Ignacio Amestoy
+Alumnos: Juan Ignacio Amestoy, Iñaki Iriarte
 
 Profesor: Santiago Gallino
 
-1er Parcial
+Recuperatorio 1er y 2do Parcial
