@@ -43,14 +43,23 @@ onUpdated(() => {
 
 <template>
     <h1 class="text-3xl my-3">Mensajes Recibidos</h1>
-    <template v-if="!loading" :key="chats">
-        {{ chats }}
-        <p v-for="chat in chats">{{ chat.message }}</p>
-        
-        <p>asdf</p>
-    </template>
-    <template v-else>
-        <Loader />
-    </template>
 
+    <table class="table-auto border-collapse m-auto">
+        <thead>
+            <tr>
+            <th class="border p-2">ID</th>
+            <th class="border p-2">Nombre de Usuario</th>
+            <th class="border p-2">Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="chat in chats" :key="chat.userId">
+                <td class="border p-2">{{ chat.userId }}</td>
+                <td class="border p-2">Nombre de Usuario</td>
+                <td class="border p-2">
+                    <router-link class="block p-2" :to="`/usuario/${chat.userId}/chat`">Chat</router-link>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </template>
