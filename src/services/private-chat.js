@@ -93,15 +93,16 @@ export async function getAllPrivateChats(){
     const privateChatsRef = collection(db, 'private-chats');
 
     const getChats = await getDocs(privateChatsRef)
-    getChats.forEach(async (doc) => {
-        const messagesRef = collection(db, `private-chats/${doc.id}/messages`);
+    for (let chat of getChats.docs) {
+        const messagesRef = collection(db, `private-chats/${chat.id}/messages`);
         const messageQuery = query(messagesRef, orderBy('created_at', 'desc'), limit(1));
-        
-        const querySnapshot = await getDocs(messageQuery);
-        querySnapshot.forEach((doc) => {
-            chats.push(doc.data())
-        });
-    })
+        let querySnapshot = await getDocs(messageQuery);
+        for (let chatdoc of querySnapshot.docs) {
+            console.log(chatdoc.data())
+            chats.push(chatdoc.data())
+        }
+    }
+    
     console.log(chats);
     return chats
 }
