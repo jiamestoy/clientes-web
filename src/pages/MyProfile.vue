@@ -52,7 +52,7 @@ onBeforeMount(async () => {
         <p class="text-gray-600">Email: {{ user.email }}</p>
         <h2 class="text-2xl font-bold mt-6 mb-2">Mis servicios</h2>
         <template v-if="orders === null">
-            <p class="text-gray-600">No se ha contratado ningún servicio.</p>
+            <p class="text-gray-600">Este usuario no tiene servicios contratados.</p>
         </template>
         <template v-else>
             <ul class="text-gray-600" v-for="order in orders" :key="order.id">
