@@ -118,3 +118,32 @@ export async function getAllPrivateChats(){
     console.log(chats);
     return chats
 } */
+
+
+export async function getPrivateChatMessages(userId) {
+    const privateChatsRef = collection(db, 'private-chats');
+  
+    const chatQuery = query(privateChatsRef, where(`users.${userId}`, '==', true), limit(1));
+    const querySnapshot = await getDocs(chatQuery);
+  
+    if (querySnapshot.empty) {
+      return [];
+    }
+  
+    const chatDoc = querySnapshot.docs[0];
+    const messagesRef = collection(db, `private-chats/${chatDoc.id}/messages`);
+    const messagesQuery = query(messagesRef, orderBy('created_at'));
+  
+    const messagesSnapshot = await getDocs(messagesQuery);
+  
+    const messages = messagesSnapshot.docs.map((doc) => {
+      return {
+        userId: doc.data().userId,
+        message: doc.data().message,
+        created_at: doc.data().created_at?.toDate(),
+      };
+    });
+  
+    return messages;
+  }
+  

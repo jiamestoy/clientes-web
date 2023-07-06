@@ -3,10 +3,12 @@ import { getAllPrivateChats } from "../../services/private-chat.js";
 import { getAllUsers } from '../../services/users.js';
 import Loader from '../../components/Loader.vue';
 import { onBeforeMount, ref } from 'vue';
+import useAuth from '../../composition/useAuth.js';
 
 const chats = ref([]);
 const loading = ref(true);
 const users = ref([]);
+const {user} = useAuth();
 
 async function getAllChats() {
   try {
@@ -54,7 +56,7 @@ onBeforeMount(async () => {
       <tbody>
         <tr v-for="chat in chats" :key="chat.userIds.join('-')">
           <template v-for="userId in chat.userIds" :key="userId">
-            <template v-if="userId !== 'rPkbcbFrpJTsdicp1V3ok4cq20e2'">
+            <template v-if="userId !== user.id">
               <td class="border p-2">{{ getUserEmail(userId) }}</td>
               <td class="border p-2">{{ chat.lastMessage?.message }}</td>
               <td class="border p-2">
