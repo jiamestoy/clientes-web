@@ -120,7 +120,6 @@ router.beforeEach(async (to, from) => {
       return {
         path: '/iniciar-sesion',
       }
-      next('/iniciar-sesion');
     } else if (to.meta.requiresAdmin) {
       // Check the user's role
       const userRole = await isAdmin(user.id);
@@ -129,7 +128,6 @@ router.beforeEach(async (to, from) => {
         return {
           path: '/',
         }
-        next();
       } 
     }
   });

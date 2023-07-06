@@ -81,13 +81,22 @@ export async function getAllPrivateChats() {
       const chatData = chatDoc.data();
       const userIds = Object.keys(chatData.users);
   
-      chats.push(userIds);
+      const messagesRef = collection(db, `private-chats/${chatDoc.id}/messages`);
+      const messagesQuery = query(messagesRef, orderBy('created_at', 'desc'), limit(1));
+      const messagesSnapshot = await getDocs(messagesQuery);
+  
+      const lastMessage = messagesSnapshot.docs[0]?.data();
+  
+      const chat = {
+        userIds,
+        lastMessage
+      };
+  
+      chats.push(chat);
     }
   
-    console.log(chats);
     return chats;
   }
-  
 
 /*
 export async function getAllPrivateChats(){
