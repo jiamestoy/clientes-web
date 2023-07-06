@@ -1,40 +1,50 @@
 <script setup>
-import { getChatsByUser, getAllPrivateChats } from "../../services/private-chat.js";
+import { getAllPrivateChats } from "../../services/private-chat.js";
 import Loader from '../../components/Loader.vue';
-import useAuth from '../../composition/useAuth';
-import { onMounted, ref, onBeforeMount, onUpdated, watch } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
-const chats = ref();
+const chats = ref([]);
+const loading = ref(true);
 
 async function getAllChats() {
-    chats.value = await getAllPrivateChats()
-    console.log(chats.value)
+  try {
+    chats.value = await getAllPrivateChats();
+  } catch (error) {
+    console.error(error.message);
+  } finally {
+    loading.value = false;
+  }
 }
-
-onBeforeMount(() => {
-    getAllChats()
-})
+onBeforeMount(async () => {
+  await getAllChats();
+});
 </script>
 
 <template>
-    <h1 class="text-3xl my-3">Mensajes Recibidos</h1>
+  <h1 class="text-3xl my-3">Mensajes Recibidos</h1>
+  <Loader v-if="loading" />
 
-    <table class="table-auto border-collapse m-auto">
-        <thead>
-            <tr>
-            <th class="border p-2">ID</th>
-            <th class="border p-2">Nombre de Usuario</th>
-            <th class="border p-2">Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr v-for="chat in chats" :key="chat.userId">
-                <td class="border p-2">{{ chat.userId }}</td>
-                <td class="border p-2">Nombre de Usuario</td>
-                <td class="border p-2">
-                    <router-link class="block p-2" :to="`/usuario/${chat.userId}/chat`">Chat</router-link>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <table v-else class="table-auto border-collapse m-auto">
+  <thead>
+    <tr>
+      <th class="border p-2">ID</th>
+      <th class="border p-2">Nombre de Usuario</th>
+      <th class="border p-2">Acción</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="chat in chats" :key="chat.userId">
+      <template v-for="userId in chat">
+        <template v-if="userId !== 'rPkbcbFrpJTsdicp1V3ok4cq20e2'">
+          <td class="border p-2">{{ userId }}</td>
+          <td class="border p-2">Nombre de Usuario</td>
+          <td class="border p-2">
+            <router-link class="block p-2" :to="`/usuario/${userId}/chat`">Chat</router-link>
+          </td>
+        </template>
+      </template>
+    </tr>
+  </tbody>
+</table>
+
 </template>
