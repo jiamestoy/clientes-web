@@ -14,7 +14,7 @@ function useProductForm() {
     const fields = ref({
         name: '',
         description: '',
-        price: 0,
+        price: null,
     });
     const loading = ref(false);
     const feedback = ref({
@@ -54,8 +54,8 @@ function useProductForm() {
 </script>
 
 <template>
-    <section class="container">
-        <h1 class="text-3xl mb-3">Añadir Nuevo Producto</h1>
+    <section class="container max-w-lg m-auto">
+        <h1 class="text-3xl font-bold text-center text-green-900 my-3">Crear Nuevo Producto</h1>
 
         <form
             action="#"
@@ -69,6 +69,7 @@ function useProductForm() {
                     name="name"
                     id="name"
                     v-model="fields.name"
+                    required
                 />
             </div>
             <div class="mb-3">
@@ -78,6 +79,7 @@ function useProductForm() {
                     name="description"
                     id="description"
                     v-model="fields.description"
+                    required
                 />
             </div>
             <div class="mb-3">
@@ -87,12 +89,16 @@ function useProductForm() {
                     name="price"
                     id="price"
                     v-model="fields.price"
+                    required
+                    min="0"
                 />
             </div>
-            <Button class="my-3 block">Añadir Producto</Button>
+            <Button class="my-3 p-4 block w-full">Añadir Producto</Button>
         </form>
 
-        <Loader v-if="loading" />
+        <div class="flex justify-center">
+            <Loader v-if="loading" />
+        </div>
 
         <div v-if="feedback.message !== '' && feedback.type == 'error'" class="bg-red-200 text-red-900 p-3 rounded">
                 {{ feedback.message }}

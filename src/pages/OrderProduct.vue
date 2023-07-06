@@ -12,52 +12,13 @@ const userId = route.params.userId;
 onMounted(() => {
     createOrder(userId, productId)
 })
-
-// console.log(productId, userId)
-// const {handleSubmit, loading, feedback} = useEditInForm();
-
-// function useEditInForm() {
-//     const loading = ref(false);
-//     const router = useRouter();
-
-//     const feedback = ref({
-//         message: '',
-//         type: 'error',
-//     });
-
-//     function handleSubmit() {
-//         loading.value = true;
-
-//         edit({...product.value}, productId)
-//         .then(() => {
-//             feedback.value = {
-//                     message: 'El producto se editó con éxito.',
-//                     type: 'success',
-//                 }
-//             loading.value = false;
-//             setTimeout(() => router.push('/admin/products'), 2000);
-//         })
-//         .catch(err => {
-//             loading.value = false;
-//             feedback.value = {
-//                 message: err.message,
-//                 type: 'error',
-//             }
-//         }) 
-//     }
-
-//     return {
-//         handleSubmit,
-//         feedback,
-//         loading,
-//     }
-// }
 </script>
 
 <template>
-    <section class="container w-1/4">
-        <h1 class="text-3xl my-3">Servicio contratado</h1>
+    <section class="container w-1/4 mx-auto">
+        <h1 class="text-3xl my-3 font-bold text-center text-green-900">Servicio contratado</h1>
 
-        <p>¡Felicitaciones! Contrataste el servicio: {{ product.name }}</p>
+        <p class="text-lg text-center">¡Felicitaciones! Contrataste el servicio:</p>
+        <p class="text-2xl text-center">{{ product.name }}</p>
     </section>
 </template>

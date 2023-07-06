@@ -59,8 +59,8 @@ function useLogininForm() {
 </script>
 
 <template>
-    <section class="container w-1/4">
-        <h1 class="text-3xl my-3">Iniciar Sesión</h1>
+    <section class="container max-w-lg m-auto">
+        <h1 class="text-4xl my-5 font-bold text-center text-green-900">Iniciar Sesión</h1>
         <form 
             action="#" 
             method="post" 
@@ -90,7 +90,7 @@ function useLogininForm() {
                     v-model="fields.password" 
                 />
             </div>
-            <Button class="my-3">Ingresar</Button>
+            <Button class="my-3 py-4 w-full">Ingresar</Button>
 
             <div v-if="feedback.message !== ''" class="bg-red-200 text-red-900 p-3 rounded">
                 {{ feedback.message }}

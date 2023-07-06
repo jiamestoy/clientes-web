@@ -20,10 +20,11 @@ onBeforeMount(() => {
 
 <template>
     <template v-if="!loading">
-        <section class="container">
-            <h1 class="text-3xl my-3">Email del usuario: {{ user.email }}</h1>
+        <section class="container max-w-5xl mx-auto">
+            <h1 class="text-3xl my-3 font-bold text-center text-green-900">Detalles de usuario</h1>
+            <h2 class="text-3xl my-3">Email del usuario: {{ user.email }}</h2>
 
-            <p>ID del usuario: {{ user.id }}</p>
+            <p class="text-lg">ID del usuario: {{ user.id }}</p>
 
             <h2 class="text-2xl my-3">Servicios Contratados:</h2>
             

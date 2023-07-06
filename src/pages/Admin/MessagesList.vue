@@ -38,8 +38,10 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-    <h1 class="text-3xl my-3">Mensajes Recibidos</h1>
-    <Loader v-if="loading" />
+    <h1 class="text-3xl font-bold text-green-900 text-center mb-5">Mensajes Recibidos</h1>
+    <div v-if="loading" class="flex justify-center">
+        <Loader />
+    </div>
   
     <table v-else class="table-auto border-collapse m-auto">
       <thead>

@@ -76,8 +76,27 @@ function usePrivateChatForm(authUser, otherUser) {
 <template>
     <template v-if="!loading">
         <section class="container">
-            <h1 class="text-3xl my-3">Chat Privado con {{ user.email }}</h1>
+            <h1 class="text-3xl font-bold text-center text-green-900 my-3">Contacto</h1>
             
+            <section class="mb-6 border p-3">
+                <div id="chat">
+                    
+                    <div v-if="loadMessages" class="flex justify-center">
+                        <Loader />
+                    </div>
+    
+                    <ul class="flex flex-col" v-else>
+                        <li 
+                            class="my-4 p-3 border rounded w-2/4" 
+                            v-for="message in messages"
+                            :class="{'bg-green-50 text-right self-end': message.userId === authUser.id}"
+                        >
+                            {{ message.message }}
+                            <Date :date="message.created_at" />
+                        </li>
+                    </ul>
+                </div>
+            </section>
             <div>
                 <section>
                     <form 
@@ -88,36 +107,24 @@ function usePrivateChatForm(authUser, otherUser) {
                         <div class="my-3">
                             <Label 
                                 for="message" 
-                            >Mensaje</Label>
-                            <Textarea 
-                                id="message" 
-                                v-model="newMessage.message"
-                            ></Textarea>
+                            >Ingresa tu mensaje:</Label>
+                            <div class="flex">
+                                <Textarea 
+                                    id="message" 
+                                    v-model="newMessage.message"
+                                    class="mr-2"
+                                ></Textarea>
+                                <Button class="w-1/5 mx-2 block ml-auto">Enviar</Button>
+                            </div>
                         </div>
-                        <Button class="w-1/5">Enviar</Button>
                     </form>
                 </section>
             </div>
         </section>
-        <section class="mb-4">
-            <div id="chat">
-
-                <Loader v-if="loadMessages" />
-
-                <ul class="flex flex-col" v-else>
-                    <li 
-                        class="my-4 p-3 border rounded w-2/4" 
-                        v-for="message in messages"
-                        :class="{'bg-green-50 text-right self-end': message.userId === authUser.id}"
-                    >
-                        {{ message.message }}
-                        <Date :date="message.created_at" />
-                    </li>
-                </ul>
-            </div>
-        </section>
     </template>
     <template v-else>
-        <Loader />
+        <div class="flex justify-center">
+            <Loader />
+        </div>
     </template>
 </template>

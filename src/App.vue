@@ -40,7 +40,7 @@ onUpdated(() => {
 <template>
     <div class="grid grid-rows-layout h-full">
         <nav class="flex justify-between items-center p-2 bg-green-50 zinc-950">
-            <router-link class="block p-2 text-2xl" to="/">Logo</router-link>
+            <router-link class=" p-2 text-2xl" to="/"><img src="/imgs/logo.png" alt="Logo" class="w-1/2 m-auto"></router-link>
             <ul class="flex gap-2">
                 <li>
                     <router-link class="block p-2" to="/">Home</router-link>

@@ -52,8 +52,8 @@ function useDeleteInForm() {
 </script>
 
 <template>
-    <section class="container w-1/4">
-        <h1 class="text-3xl my-3">¿Eliminar el producto {{ product.name }}?</h1>
+    <section class="container max-w-lg m-auto">
+        <h1 class="text-3xl font-bold text-center text-green-900 my-3">¿Eliminar el producto {{ product.name }}?</h1>
         <form 
             action="#" 
             method="post" 
@@ -61,18 +61,19 @@ function useDeleteInForm() {
         >
 
             <div class="my-2 p-2 border rounded">
-                <h3 class="mb-4">{{ product.name }}</h3>
+                <h3 class="mb-4 text-2xl font-bold text-center text-green-900">{{ product.name }}</h3>
 
-                <p>{{ product.description }}</p>
+                <p class="text-lg mb-4">{{ product.description }}</p>
 
-                <p>Precio: ${{ product.price }}/mes</p>
+                <p class="text-2xl mb4 text-center">Precio: ${{ product.price }}/mes</p>
             </div>
 
             <Button class="my-3 block w-full">Sí, eliminar producto</Button>
             <router-link :to="`/admin/products`" class="block p-2 my-2 bg-red-500 text-white rounded text-center">Cancelar</router-link>
 
-
-            <Loader v-if="loading" />
+            <div class="flex justify-center">
+                <Loader v-if="loading" />
+            </div>
 
             <div v-if="feedback.message !== '' && feedback.type == 'error'" class="bg-red-200 text-red-900 p-3 rounded">
                 {{ feedback.message }}

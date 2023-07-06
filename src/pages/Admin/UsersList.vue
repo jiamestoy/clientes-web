@@ -24,9 +24,11 @@ onBeforeMount(async () => {
 </script>
 
 <template>
-  <h1 class="text-3xl my-3 text-center">Lista de Usuarios</h1>
+  <h1 class="text-3xl font-bold text-green-900 my-3 text-center">Lista de Usuarios</h1>
 
-  <Loader v-if="loading" />
+  <div v-if="loading" class="flex justify-center">
+    <Loader />
+  </div>
 
   <table v-else class="table-auto border-collapse m-auto">
     <thead>

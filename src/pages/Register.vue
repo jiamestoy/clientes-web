@@ -64,8 +64,8 @@ function useRegisterForm() {
 </script>
 
 <template>
-  <section class="container w-1/4">
-    <h1 class="text-3xl my-3">Registrar un Usuario Nuevo</h1>
+  <section class="container max-w-lg m-auto">
+    <h1 class="text-4xl my-5 font-bold text-center text-green-900">Registrarse</h1>
     <form action="#" method="post" @submit.prevent="handleSubmit">
       <div class="mb-3">
         <Label for="email">Correo Electrónico</Label>
@@ -89,10 +89,12 @@ function useRegisterForm() {
           v-model="repeatPassword"
         />
       </div>
-      <Button>Registrarse</Button>
+      <Button class="w-full py-4">Crear Cuenta</Button>
     </form>
 
-    <Loader v-if="loading" />
+    <div class="flex justify-center">
+      <Loader v-if="loading" />
+    </div>
 
     <div v-if="feedback.message !== '' && feedback.type == 'error'" class="bg-red-200 text-red-900 p-3 rounded">
       {{ feedback.message }}
