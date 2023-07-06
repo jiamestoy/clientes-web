@@ -79,6 +79,7 @@ function usePrivateChatForm(authUser, otherUser) {
             <h1 class="text-3xl font-bold text-center text-green-900 my-3">Contacto</h1>
             
             <section class="mb-6 border p-3">
+                <h2 class="sr-only">Mensajes</h2>
                 <div id="chat">
                     
                     <div v-if="loadMessages" class="flex justify-center">
@@ -99,6 +100,7 @@ function usePrivateChatForm(authUser, otherUser) {
             </section>
             <div>
                 <section>
+                    <h2 class="sr-only">Escribir Mensajes</h2>
                     <form 
                         action="#" 
                         id="form-message"

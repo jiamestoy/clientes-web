@@ -66,7 +66,6 @@ function useLoginForm() {
             <div class="mb-3">
                 <Label 
                     for="email" 
-                    id="email"
                 >Correo Electrónico</Label>
                 <Input 
                     type="email" 
@@ -78,7 +77,6 @@ function useLoginForm() {
             <div class="mb-3">
                 <Label 
                     for="password" 
-                    id="password"
                 >Contraseña</Label>
                 <Input 
                     type="password" 
